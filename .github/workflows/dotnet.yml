@@ -83,7 +83,7 @@ jobs:
         if: env.VERSION_UPDATE_TYPE == 'MINOR'
         run: |
           git config user.name "Build - Incrementing version | Github action"
-          git config user.email "deploy@smartconsig.com"
+          git config user.email "deploy@coderaw.com"
           git add .
           git commit -m "CI: Updating application version ${{ steps.bump-minor.outputs.newVersion }}"
           git push
@@ -92,7 +92,7 @@ jobs:
         if: env.VERSION_UPDATE_TYPE == 'REVISION'
         run: |
           git config user.name "Build - Incrementing version | Github action"
-          git config user.email "deploy@smartconsig.com"
+          git config user.email "deploy@coderaw.com"
           git pull
           git add .
           git commit -m "CI: Updating application version ${{ steps.bump-revision.outputs.newVersion }}"
@@ -132,7 +132,7 @@ jobs:
       - name: Build solution and generate NuGet package
         run: | 
           dotnet build --no-restore --configuration Release src/Coderaw.Settings/Coderaw.Settings.csproj
-          dotnet pack src/Coderaw.Settings/Coderaw.Settings.csproj --no-build --configuration Release --output SmartConsig.Contracts/out
+          dotnet pack src/Coderaw.Settings/Coderaw.Settings.csproj --no-build --configuration Release --output Coderaw.Settings/out
       
       - name: Push generated package to NuGet
-        run: dotnet nuget push ./SmartConsig.Contracts/out/*.nupkg --api-key ${{ secrets.SMARTCONSIG_CONTRACTS_API_KEY }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ./Coderaw.Settings/out/*.nupkg --api-key ${{ secrets.CODERAW_NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
