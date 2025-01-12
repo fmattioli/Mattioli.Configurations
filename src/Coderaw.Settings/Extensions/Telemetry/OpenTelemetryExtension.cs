@@ -1,12 +1,15 @@
-﻿using Coderaw.Settings.Models;
+﻿using Coderaw.Settings.Extensions.Telemetry;
+using Coderaw.Settings.Models;
+
 using Microsoft.Extensions.DependencyInjection;
+
 using OpenTelemetry;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace Coderaw.Settings.Telemetry
+namespace Coderaw.Settings.Extensions.Telemetry
 {
     public static class OpenTelemetryExtension
     {

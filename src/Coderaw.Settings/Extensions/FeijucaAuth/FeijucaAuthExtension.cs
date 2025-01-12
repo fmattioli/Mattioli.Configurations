@@ -1,8 +1,10 @@
 ﻿using Coderaw.Settings.Models;
+
 using Feijuca.Auth.Extensions;
+
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Coderaw.Settings.FeijucaAuth
+namespace Coderaw.Settings.Extensions.FeijucaAuth
 {
     public static class FeijucaAuthExtension
     {

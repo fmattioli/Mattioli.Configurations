@@ -1,9 +1,12 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using Coderaw.Settings.Extensions.Loggings;
+
+using Microsoft.Extensions.Hosting;
+
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.OpenTelemetry;
 
-namespace Coderaw.Settings.Loggings
+namespace Coderaw.Settings.Extensions.Loggings
 {
     public static class SerilogExtensions
     {
