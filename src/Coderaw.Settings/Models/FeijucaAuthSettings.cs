@@ -2,5 +2,13 @@
 
 namespace Coderaw.Settings.Models
 {
-    public record FeijucaAuthSettings(Client Client, Secrets Secrets, ServerSettings ServerSettings, Realm Realm, ClientScopes ClientScopes);
+    public class FeijucaAuthSettings
+    {
+        public Client Client { get; set; }
+        public Secrets? Secrets { get; set; }
+        public ServerSettings ServerSettings { get; set; }
+        public Realm? Realm { get; set; }
+        public ClientScopes? ClientScopes { get; set; }
+    }
+
 }
