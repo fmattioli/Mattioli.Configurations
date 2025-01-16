@@ -1,4 +1,8 @@
 ﻿namespace Coderaw.Settings.Models
 {
-    public record MltSettings(string OpenTelemetryColectorUrl, string ApplicationName);
+    public class MltSettings
+    {
+        public string OpenTelemetryColectorUrl { get; set; }
+        public string ApplicationName { get; set; }
+    }
 }
