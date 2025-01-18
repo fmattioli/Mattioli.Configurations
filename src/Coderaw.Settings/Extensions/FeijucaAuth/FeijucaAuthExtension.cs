@@ -1,7 +1,5 @@
 ﻿using Coderaw.Settings.Models;
-
 using Feijuca.Auth.Extensions;
-
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Coderaw.Settings.Extensions.FeijucaAuth
