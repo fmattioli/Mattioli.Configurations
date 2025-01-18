@@ -11,7 +11,7 @@ namespace Coderaw.Settings.Extensions.FeijucaAuth
         public static IServiceCollection AddApiAuthentication(this IServiceCollection services, FeijucaAuthSettings settings)
         {
             services.AddHttpContextAccessor();
-            services.AddKeyCloakAuth(settings.Client, settings.ServerSettings, [settings.Realm]);
+            services.AddKeyCloakAuth(settings.Client, settings.ServerSettings, settings.Realms);
 
             return services;
         }

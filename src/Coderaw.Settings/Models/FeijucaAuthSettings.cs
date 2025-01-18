@@ -7,7 +7,7 @@ namespace Coderaw.Settings.Models
         public Client Client { get; set; }
         public Secrets? Secrets { get; set; }
         public ServerSettings ServerSettings { get; set; }
-        public Realm? Realm { get; set; }
+        public IReadOnlyCollection<Realm> Realms { get; init; }
         public ClientScopes? ClientScopes { get; set; }
     }
 
