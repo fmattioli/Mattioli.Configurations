@@ -10,7 +10,7 @@
     <Company>Smart Consig</Company>
     <Description>Helpful settings related to the logging, telemetry, auth and more. </Description>
     <PackageIcon>black-white.png</PackageIcon>
-    <Version>1.8.0</Version>
+    <Version>1.9.0</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <NoWarn>CS8618</NoWarn>
