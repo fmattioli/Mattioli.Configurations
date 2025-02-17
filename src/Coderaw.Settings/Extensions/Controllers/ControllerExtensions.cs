@@ -1,6 +1,7 @@
 ﻿using Coderaw.Settings.Filters;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace Coderaw.Settings.Extensions.Controllers
 {
@@ -11,9 +12,10 @@ namespace Coderaw.Settings.Extensions.Controllers
             options.Filters.Add<ValidationsFilterAttribute>();
         }
 
-        public static void ConfigureJsonOptions(JsonOptions options)
+        public static void ConfigureNewtonsoftJson(MvcNewtonsoftJsonOptions options)
         {
-            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            options.SerializerSettings.Converters.Add(new StringEnumConverter());
         }
 
         public static void ConfigureApiBehaviorOptions(ApiBehaviorOptions options)
