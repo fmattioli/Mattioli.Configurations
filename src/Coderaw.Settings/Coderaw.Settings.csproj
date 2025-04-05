@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Feijuca.Auth" Version="1.21.0" />
+    <PackageReference Include="Feijuca.Auth" Version="1.22.0" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="Flurl" Version="4.0.0" />
     <PackageReference Include="Hangfire.AspNetCore" Version="1.8.18" />
