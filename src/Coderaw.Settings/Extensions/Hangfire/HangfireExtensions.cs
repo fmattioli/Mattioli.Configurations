@@ -11,7 +11,7 @@ namespace Coderaw.Settings.Extensions.Hangfire
 {
     public static class HangFireExtensions
     {
-        public static IServiceCollection AddHangFire(this IServiceCollection services, string connectionString, string dataBase)
+        public static IServiceCollection AddHangFire(this IServiceCollection services, string connectionString, string dataBase, string hangfirePrefixCollectionName)
         {
             var mongoUrlBuilder = new MongoUrlBuilder(connectionString);
             var mongoClient = new MongoClient(mongoUrlBuilder.ToMongoUrl());
@@ -27,7 +27,7 @@ namespace Coderaw.Settings.Extensions.Hangfire
                         MigrationStrategy = new MigrateMongoMigrationStrategy(),
                         BackupStrategy = new CollectionMongoBackupStrategy()
                     },
-                    Prefix = "hangfire.mongo.metrics",
+                    Prefix = hangfirePrefixCollectionName,
                     CheckConnection = true,
                 });
             });
