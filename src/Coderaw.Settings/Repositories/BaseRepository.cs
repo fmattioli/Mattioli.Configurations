@@ -1,9 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Coderaw.Settings.Repositories.Interfaces;
+using Microsoft.Extensions.Logging;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using System.Linq.Expressions;
 
-namespace Coderaw.Settings.Common
+namespace Coderaw.Settings.Repositories
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
