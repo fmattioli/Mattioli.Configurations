@@ -35,6 +35,12 @@ namespace Coderaw.Settings.Repositories
             return result.DeletedCount;
         }
 
+        public async Task DeleteIfExistsAndInsertAsync(Expression<Func<TEntity, bool>> filterExpression, TEntity entity, CancellationToken cancellationToken)
+        {
+            await DeleteAsync(filterExpression, cancellationToken);
+            await AddAsync(entity, cancellationToken);
+        }
+
         public async Task<long> ReplaceAsync(Expression<Func<TEntity, bool>> filterExpression, TEntity entity, CancellationToken cancellationToken)
         {
             var result = await _collection.ReplaceOneAsync(filterExpression, entity, cancellationToken: cancellationToken);
