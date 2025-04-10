@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Coderaw.Settings.Repositories.Interfaces
+namespace Coderaw.Settings.Repositories
 {
     public interface IBaseRepository<TEntity> where TEntity : class
     {

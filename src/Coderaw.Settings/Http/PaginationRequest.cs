@@ -1,4 +1,4 @@
-﻿namespace Coderaw.Settings.Common
+﻿namespace Coderaw.Settings.Http
 {
     public class PaginationRequest(int pageNumber, int pageSize)
     {
