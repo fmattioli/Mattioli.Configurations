@@ -8,7 +8,7 @@
     <Authors>coderaw.io</Authors>
     <Title>Coderaw.Settings</Title>
     <Company>Smart Consig</Company>
-    <Description>Helpful settings related to the logging, telemetry, auth and more. </Description>
+    <Description>Helpful settings related to the logging, telemetry, http client and more. </Description>
     <PackageIcon>black-white.png</PackageIcon>
     <Version>1.23.0</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -28,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Feijuca.Auth" Version="1.25.0" />
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="Flurl" Version="4.0.0" />
     <PackageReference Include="Hangfire.AspNetCore" Version="1.8.18" />
