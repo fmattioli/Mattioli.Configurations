@@ -3,9 +3,9 @@ using System.Net;
 
 namespace Coderaw.Settings.Extensions.Cors
 {
-    public static class ConfigureCorsExtensions
+    public static class CorsExtensions
     {
-        public static IServiceCollection AddCustomCors(
+        public static IServiceCollection AddCors(
             this IServiceCollection services,
             string policyName,
             Func<List<string>> getAllowedIps)
