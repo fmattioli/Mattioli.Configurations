@@ -5,7 +5,10 @@ namespace Coderaw.Settings.Extensions.Cors
 {
     public static class ConfigureCorsExtensions
     {
-        public static IServiceCollection AddCustomCors(this IServiceCollection services, string policyName)
+        public static IServiceCollection AddCustomCors(
+            this IServiceCollection services,
+            string policyName,
+            Func<List<string>> getAllowedIps)
         {
             services.AddCors(options =>
             {
@@ -15,7 +18,7 @@ namespace Coderaw.Settings.Extensions.Cors
                     {
                         var host = new Uri(origin).Host;
                         var ipAddresses = Dns.GetHostAddresses(host);
-                        var allowedIps = GetAllowedIps();
+                        var allowedIps = getAllowedIps();
 
                         return ipAddresses.Any(ip => allowedIps.Contains(ip.ToString()));
                     })
@@ -26,11 +29,6 @@ namespace Coderaw.Settings.Extensions.Cors
             });
 
             return services;
-        }
-
-        private static List<string> GetAllowedIps()
-        {
-            return ["85.209.93.218"];
         }
     }
 }
