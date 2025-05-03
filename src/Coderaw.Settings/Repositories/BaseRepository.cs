@@ -52,10 +52,9 @@ namespace Coderaw.Settings.Repositories
             return result.ModifiedCount;
         }
 
-        public async Task<TEntity> GetByIdAsync(Guid Id, CancellationToken cancellationToken)
+        public async Task<TEntity?> GetOneAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
         {
-            var filter = Builders<TEntity>.Filter.Eq("_id", Id);
-            var result = await _collection.Find(filter).FirstOrDefaultAsync(cancellationToken);
+            var result = await _collection.Find(predicate).FirstOrDefaultAsync(cancellationToken);
             return result;
         }
 
