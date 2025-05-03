@@ -14,7 +14,7 @@ namespace Coderaw.Settings.Repositories
         Task DeleteIfExistsAndInsertAsync(Expression<Func<TEntity, bool>> filterExpression,
             TEntity entity, CancellationToken cancellationToken);
 
-        Task<TEntity> GetByIdAsync(Guid Id, CancellationToken cancellationToken);
+        Task<TEntity?> GetOneAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
 
         Task<TEntity> GetLatestBasedOnFieldAsync(string field, CancellationToken cancellationToken);
 
