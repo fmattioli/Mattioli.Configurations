@@ -12,7 +12,7 @@ namespace Coderaw.Settings.Stages
             var names = tenantNames.Select(x => new BsonRegularExpression(new Regex(x, RegexOptions.IgnoreCase)));
 
             var filter = new BsonDocument(
-                "Tenant.Names",
+                "Tenants.Name",
                 new BsonDocument("$in", BsonArray.Create(names)));
 
             return new BsonDocumentFilterDefinition<BsonDocument>(filter);
