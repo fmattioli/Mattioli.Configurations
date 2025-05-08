@@ -1,7 +1,7 @@
 ﻿namespace Coderaw.Settings.Models
 {
-    public record CorsSettings
+    public class CorsSettings
     {
-        public IReadOnlyCollection<string> AllowedIPs { get; init; } = [];
+        public List<string> AllowedIPs { get; set; }
     }
 }
