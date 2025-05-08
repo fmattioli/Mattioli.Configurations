@@ -2,6 +2,6 @@
 {
     public record CorsSettings
     {
-        public List<string> AllowedIPs { get; set; }
+        public List<string> AllowedIPs { get; init; } = [];
     }
 }
