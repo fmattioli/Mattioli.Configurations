@@ -2,6 +2,6 @@
 {
     public record CorsSettings
     {
-        public IReadOnlyCollection<string> AllowedIPs { get; set; }
+        public IReadOnlyCollection<string> AllowedIPs { get; init; } = [];
     }
 }
