@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Coderaw.Settings.Models;
+using Microsoft.Extensions.DependencyInjection;
 using System.Net;
 
 namespace Coderaw.Settings.Extensions.Cors
@@ -8,7 +9,7 @@ namespace Coderaw.Settings.Extensions.Cors
         public static IServiceCollection AddCors(
             this IServiceCollection services,
             string policyName,
-            Func<List<string>> getAllowedIps)
+            Func<CorsSettings> getSettings)
         {
             services.AddCors(options =>
             {
@@ -16,11 +17,21 @@ namespace Coderaw.Settings.Extensions.Cors
                 {
                     builder.SetIsOriginAllowed(origin =>
                     {
-                        var host = new Uri(origin).Host;
-                        var ipAddresses = Dns.GetHostAddresses(host);
-                        var allowedIps = getAllowedIps();
+                        var uri = new Uri(origin);
+                        var host = uri.Host.ToLowerInvariant();
+                        var settings = getSettings();
 
-                        return ipAddresses.Any(ip => allowedIps.Contains(ip.ToString()));
+                        var allowedHosts = settings.AllowedHosts?.Select(h => h.ToLowerInvariant()) ?? [];
+                        var allowedIps = settings.AllowedIPs ?? [];
+
+                        if (allowedHosts.Contains(host))
+                            return true;
+
+                        var resolvedIps = Dns.GetHostAddresses(host);
+                        if (resolvedIps.Any(ip => allowedIps.Contains(ip.ToString())))
+                            return true;
+
+                        return false;
                     })
                     .AllowAnyHeader()
                     .AllowAnyMethod()
