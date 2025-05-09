@@ -28,7 +28,10 @@ namespace Coderaw.Settings.Extensions.Cors
                             return true;
 
                         var resolvedIps = Dns.GetHostAddresses(host);
-                        return resolvedIps.Any(ip => allowedIps.Contains(ip.ToString()));
+                        if (resolvedIps.Any(ip => allowedIps.Contains(ip.ToString())))
+                            return true;
+
+                        return false;
                     })
                     .AllowAnyHeader()
                     .AllowAnyMethod()
