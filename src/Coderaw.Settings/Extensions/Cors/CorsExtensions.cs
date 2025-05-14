@@ -1,7 +1,5 @@
 ﻿using Coderaw.Settings.Models;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using System.Net;
 
 namespace Coderaw.Settings.Extensions.Cors
@@ -11,13 +9,14 @@ namespace Coderaw.Settings.Extensions.Cors
         public static IServiceCollection AddCors(
             this IServiceCollection services,
             string policyName,
-            Func<CorsSettings> getSettings, IWebHostEnvironment env)
+            Func<CorsSettings> getSettings, string environment)
         {
             services.AddCors(options =>
             {
                 options.AddPolicy(policyName, builder =>
                 {
-                    if (env.IsDevelopment())
+                    if (string.Equals(environment, "development", StringComparison.OrdinalIgnoreCase) ||
+                    environment.Contains("dev", StringComparison.OrdinalIgnoreCase))
                     {
                         builder
                         .AllowAnyHeader()
