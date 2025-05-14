@@ -15,8 +15,7 @@ namespace Coderaw.Settings.Extensions.Cors
             {
                 options.AddPolicy(policyName, builder =>
                 {
-                    if (string.Equals(environment, "development", StringComparison.OrdinalIgnoreCase) ||
-                    environment.Contains("dev", StringComparison.OrdinalIgnoreCase))
+                    if (environment.Contains("dev", StringComparison.OrdinalIgnoreCase))
                     {
                         builder
                         .AllowAnyHeader()
