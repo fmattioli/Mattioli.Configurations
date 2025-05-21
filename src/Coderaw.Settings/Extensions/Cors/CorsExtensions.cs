@@ -28,25 +28,30 @@ namespace Coderaw.Settings.Extensions.Cors
                         builder.SetIsOriginAllowed(origin =>
                         {
                             var uri = new Uri(origin);
-                            var host = uri.Host.ToLowerInvariant();
+                            var host = uri.Host.Trim();
+                    
                             var settings = getSettings();
-
-                            var allowedHosts = settings.AllowedHosts?.Select(h => h.ToLowerInvariant()) ?? [];
+                            var allowedHosts = settings.AllowedHosts ?? [];
                             var allowedIps = settings.AllowedIPs ?? [];
-
-                            if (allowedHosts.Contains(host))
+                    
+                            if (allowedHosts.Any(h => string.Equals(h.Trim(), host, StringComparison.OrdinalIgnoreCase)))
+                            {
                                 return true;
-
+                            }
+                            
                             var resolvedIps = Dns.GetHostAddresses(host);
                             if (resolvedIps.Any(ip => allowedIps.Contains(ip.ToString())))
+                            {    
                                 return true;
-
+                            }
+                    
                             return false;
                         })
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials();
                     }
+
                 });
             });
 
