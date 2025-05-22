@@ -48,7 +48,7 @@
     <PackageReference Include="Serilog.Sinks.Grafana.Loki" Version="8.3.0" />
     <PackageReference Include="Serilog.Sinks.OpenTelemetry" Version="4.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.3.1" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.4.2" />
   </ItemGroup>
 
   <ItemGroup>
