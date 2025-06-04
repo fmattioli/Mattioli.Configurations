@@ -82,49 +82,49 @@ namespace Coderaw.Settings.Http
 
         private static IEnumerable<string> BuildFilters<T>(T queryFilters) where T : class
         {
-            return queryFilters
-                .GetType()
-                .GetProperties()
-                .Select(
-                    propertyValue =>
-                    {
-                        var builder = new StringBuilder();
-                        var value = propertyValue.GetValue(queryFilters);
+            if (queryFilters == null)
+                yield break;
 
-                        if (value is PageFilterRequest pageFilter)
-                        {
-                            builder.Append($"&PageFilter.PageSize={pageFilter.PageSize}");
-                        }
+            foreach (var property in queryFilters.GetType().GetProperties())
+            {
+                var value = property.GetValue(queryFilters);
+                if (value == null)
+                    continue;
 
-                        if (value is IEnumerable<Guid> enumerableGuid)
-                        {
-                            builder.AppendJoin("&", enumerableGuid.Select(item => $"{propertyValue.Name}=" + item.ToString()));
-                        }
+                var name = property.Name;
 
-                        if (value is IEnumerable<string> enumerableString)
-                        {
-                            builder.AppendJoin("&", enumerableString.Select(item => $"{propertyValue.Name}=" + item));
-                        }
+                switch (value)
+                {
+                    case PageFilterRequest pageFilter:
+                        yield return $"PageFilter.PageSize={pageFilter.PageSize}";
+                        break;
 
-                        if (value is string basicString)
-                        {
-                            builder.AppendJoin("&", $"{propertyValue.Name}=" + basicString);
-                        }
+                    case IEnumerable<Guid> guids:
+                        foreach (var guid in guids)
+                            yield return $"{name}={guid}";
+                        break;
 
-                        if (value is DateTime dateTime && dateTime != DateTime.MinValue)
-                        {
-                            builder
-                            .Append(propertyValue.Name)
-                            .Append('=')
-                            .Append(dateTime.Year)
-                            .Append('-')
-                            .Append(dateTime.Month)
-                            .Append('-')
-                            .Append(dateTime.Day);
-                        }
+                    case IEnumerable<string> strings:
+                        foreach (var str in strings)
+                            yield return $"{name}={str}";
+                        break;
 
-                        return builder.ToString();
-                    });
+                    case string str:
+                        yield return $"{name}={str}";
+                        break;
+
+                    case int _:
+                    case short _:
+                    case decimal _:
+                    case float _:
+                        yield return $"{name}={value}";
+                        break;
+
+                    case DateTime dt when dt != DateTime.MinValue:
+                        yield return $"{name}={dt:yyyy-MM-dd}";
+                        break;
+                }
+            }
         }
     }
 }
