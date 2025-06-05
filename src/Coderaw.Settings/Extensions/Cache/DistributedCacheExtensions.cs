@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Coderaw.Settings.Repositories;
+
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Coderaw.Settings.Extensions.Cache
 {
@@ -11,6 +13,8 @@ namespace Coderaw.Settings.Extensions.Cache
                 options.Configuration = connectionString;
                 options.InstanceName = instanceName;
             });
+
+            services.AddScoped<ICacheRepository, CacheRepository>();
 
             return services;
         }
