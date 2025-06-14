@@ -21,18 +21,21 @@ namespace Coderaw.Settings.Extensions.Hangfire
             {
                 config.UseMongoStorage(mongoClient, mongoDataBase, new MongoStorageOptions
                 {
-                    CheckQueuedJobsStrategy = CheckQueuedJobsStrategy.TailNotificationsCollection,
+                    CheckQueuedJobsStrategy = CheckQueuedJobsStrategy.Poll,
                     MigrationOptions = new MongoMigrationOptions
                     {
-                        MigrationStrategy = new MigrateMongoMigrationStrategy(),
-                        BackupStrategy = new CollectionMongoBackupStrategy()
+                        MigrationStrategy = new DropMongoMigrationStrategy(),
+                        BackupStrategy = new NoneMongoBackupStrategy()
                     },
                     Prefix = hangfirePrefixCollectionName,
-                    CheckConnection = true,
+                    CheckConnection = false,
                 });
             });
 
-            services.AddHangfireServer();
+            services.AddHangfireServer(options =>
+            {
+                options.WorkerCount = 2;
+            });
 
             return services;
         }
