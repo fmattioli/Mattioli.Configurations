@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coderaw.Settings", "Coderaw.Settings\Coderaw.Settings.csproj", "{03AE488A-D787-4667-8B0A-6C7527DAFC11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mattioli.Configurations", "Mattioli.Configurations\Mattioli.Configurations.csproj", "{03AE488A-D787-4667-8B0A-6C7527DAFC11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

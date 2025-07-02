@@ -30,9 +30,9 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Restore dependencies
-        run: dotnet restore src/Coderaw.Settings/Coderaw.Settings.csproj
+        run: dotnet restore src/Mattioli.Configurations/Mattioli.Configurations.csproj
       - name: Build
-        run: dotnet build --configuration Release src/Coderaw.Settings/Coderaw.Settings.csproj
+        run: dotnet build --configuration Release src/Mattioli.Configurations/Mattioli.Configurations.csproj
 
   bump:
     name: Update project version
@@ -68,7 +68,7 @@ jobs:
         id: bump-minor
         uses: vers-one/dotnet-project-version-updater@v1.5
         with:
-          file: src/Coderaw.Settings/Coderaw.Settings.csproj
+          file: src/Mattioli.Configurations/Mattioli.Configurations.csproj
           version: "*.^.0"
 
       - name: Bump build version - Revision
@@ -76,7 +76,7 @@ jobs:
         id: bump-revision
         uses: vers-one/dotnet-project-version-updater@v1.5
         with:
-          file: src/Coderaw.Settings/Coderaw.Settings.csproj
+          file: src/Mattioli.Configurations/Mattioli.Configurations.csproj
           version: "*.*.^"
 
       - name: Commit and push changes - MINOR
@@ -127,12 +127,12 @@ jobs:
           NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Restore dependencies
-        run: dotnet restore src/Coderaw.Settings/Coderaw.Settings.csproj
+        run: dotnet restore src/Mattioli.Configurations/Mattioli.Configurations.csproj
         
       - name: Build solution and generate NuGet package
         run: | 
-          dotnet build --no-restore --configuration Release src/Coderaw.Settings/Coderaw.Settings.csproj
-          dotnet pack src/Coderaw.Settings/Coderaw.Settings.csproj --no-build --configuration Release --output Coderaw.Settings/out
+          dotnet build --no-restore --configuration Release src/Mattioli.Configurations/Mattioli.Configurations.csproj
+          dotnet pack src/Mattioli.Configurations/Mattioli.Configurations.csproj --no-build --configuration Release --output Mattioli.Configurations/out
       
       - name: Push generated package to NuGet
-        run: dotnet nuget push ./Coderaw.Settings/out/*.nupkg --api-key ${{ secrets.CODERAW_NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ./Mattioli.Configurations/out/*.nupkg --api-key ${{ secrets.CODERAW_NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
