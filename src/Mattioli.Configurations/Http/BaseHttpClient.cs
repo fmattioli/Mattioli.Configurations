@@ -80,6 +80,21 @@ namespace Coderaw.Settings.Http
             return result!;
         }
 
+        protected async Task PostAsync<TRequest>(
+            string path,
+            TRequest request,
+            CancellationToken cancellationToken)
+            where TRequest : class
+        {
+            var url = _httpClient!.BaseAddress!.ToString().AppendPathSegment(path);
+
+            string json = JsonConvert.SerializeObject(request);
+
+            StringContent bodyContent = new(json, Encoding.UTF8, "application/json");
+
+            await _httpClient.PostAsync(url, bodyContent, cancellationToken);
+        }
+
         private static IEnumerable<string> BuildFilters<T>(T queryFilters) where T : class
         {
             if (queryFilters == null)

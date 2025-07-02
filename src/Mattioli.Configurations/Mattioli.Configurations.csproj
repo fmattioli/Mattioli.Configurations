@@ -5,12 +5,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>Felipe Mattioli</Authors>
-    <Title>Mattioli.Settings</Title>
+    <Authors>coderaw.io</Authors>
+    <Title>Coderaw.Settings</Title>
     <Company>Smart Consig</Company>
     <Description>Helpful settings related to the logging, telemetry, http client and more. </Description>
-    <PackageIcon>icon.png</PackageIcon>
-    <Version>1.39.0</Version>
+    <PackageIcon>black-white.png</PackageIcon>
+    <Version>1.40.0</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <NoWarn>CS8618</NoWarn>
@@ -55,10 +55,6 @@
 
   <ItemGroup>
     <None Update="black-white.png">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-    <None Update="icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
