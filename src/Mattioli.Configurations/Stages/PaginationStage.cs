@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace Coderaw.Settings.Stages
+namespace Mattioli.Configurations.Stages
 {
     public static class PaginationStage
     {

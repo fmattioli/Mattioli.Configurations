@@ -1,4 +1,4 @@
-﻿using Coderaw.Settings.Filters;
+﻿using Mattioli.Configurations.Filters;
 using Hangfire;
 using Hangfire.Mongo;
 using Hangfire.Mongo.Migration.Strategies;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 
-namespace Coderaw.Settings.Extensions.Hangfire
+namespace Mattioli.Configurations.Extensions.Hangfire
 {
     public static class HangFireExtensions
     {

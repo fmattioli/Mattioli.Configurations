@@ -1,4 +1,4 @@
-﻿namespace Coderaw.Settings.Models
+﻿namespace Mattioli.Configurations.Models
 {
     public class CacheSettings
     {

@@ -1,4 +1,4 @@
-﻿using Coderaw.Settings.Extensions.Loggings;
+﻿using Mattioli.Configurations.Extensions.Loggings;
 
 using Microsoft.Extensions.Hosting;
 
@@ -6,7 +6,7 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.OpenTelemetry;
 
-namespace Coderaw.Settings.Extensions.Loggings
+namespace Mattioli.Configurations.Extensions.Loggings
 {
     public static class SerilogExtensions
     {

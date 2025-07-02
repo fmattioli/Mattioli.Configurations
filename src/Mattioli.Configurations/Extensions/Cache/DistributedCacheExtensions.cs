@@ -1,9 +1,9 @@
-﻿using Coderaw.Settings.Models;
-using Coderaw.Settings.Repositories;
+﻿using Mattioli.Configurations.Models;
+using Mattioli.Configurations.Repositories;
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Coderaw.Settings.Extensions.Cache
+namespace Mattioli.Configurations.Extensions.Cache
 {
     public static class DistributedCacheExtensions
     {

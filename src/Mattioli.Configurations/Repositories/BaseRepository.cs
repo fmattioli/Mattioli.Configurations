@@ -1,9 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
+
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
+
 using System.Linq.Expressions;
 
-namespace Coderaw.Settings.Repositories
+namespace Mattioli.Configurations.Repositories
 {
     public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {

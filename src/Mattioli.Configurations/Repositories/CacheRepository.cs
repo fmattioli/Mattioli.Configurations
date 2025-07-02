@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
+
 using System.Text.Json;
 
-namespace Coderaw.Settings.Repositories;
+namespace Mattioli.Configurations.Repositories;
 
 public class CacheRepository(IDistributedCache _cache) : ICacheRepository
 {

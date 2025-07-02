@@ -1,8 +1,9 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Driver;
+
 using System.Text.RegularExpressions;
 
-namespace Coderaw.Settings.Stages
+namespace Mattioli.Configurations.Stages
 {
     public static class TenantStageFilter
     {

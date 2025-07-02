@@ -1,9 +1,11 @@
-﻿using Coderaw.Settings.Filters;
+﻿using Mattioli.Configurations.Filters;
+
 using Microsoft.AspNetCore.Mvc;
+
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
-namespace Coderaw.Settings.Extensions.Controllers
+namespace Mattioli.Configurations.Extensions.Controllers
 {
     public static class ControllerExtensions
     {

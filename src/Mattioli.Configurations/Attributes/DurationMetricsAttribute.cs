@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
+
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
-namespace Coderaw.Settings.Attributes
+namespace Mattioli.Configurations.Attributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class DurationMetricsAttribute : Attribute, IActionFilter

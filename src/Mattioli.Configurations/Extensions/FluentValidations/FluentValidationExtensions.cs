@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Coderaw.Settings.Extensions.FluentValidations
+namespace Mattioli.Configurations.Extensions.FluentValidations
 {
     public static class FluentValidationExtensions
     {

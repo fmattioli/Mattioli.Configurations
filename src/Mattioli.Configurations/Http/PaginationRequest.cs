@@ -1,4 +1,4 @@
-﻿namespace Coderaw.Settings.Http
+﻿namespace Mattioli.Configurations.Http
 {
     public class PaginationRequest(int pageNumber, int pageSize)
     {

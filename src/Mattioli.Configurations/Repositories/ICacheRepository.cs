@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 
-namespace Coderaw.Settings.Repositories
+namespace Mattioli.Configurations.Repositories
 {
     public interface ICacheRepository
     {

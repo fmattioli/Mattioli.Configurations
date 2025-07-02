@@ -1,8 +1,11 @@
-﻿using Coderaw.Settings.Models;
+﻿using Mattioli.Configurations.Extensions.Cors;
+using Mattioli.Configurations.Models;
+
 using Microsoft.Extensions.DependencyInjection;
+
 using System.Net;
 
-namespace Coderaw.Settings.Extensions.Cors
+namespace Mattioli.Configurations.Extensions.Cors
 {
     public static class CorsExtensions
     {

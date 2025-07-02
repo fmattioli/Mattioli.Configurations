@@ -2,9 +2,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+
 using System.Net;
 
-namespace Coderaw.Settings.Extensions.Handlers
+namespace Mattioli.Configurations.Extensions.Handlers
 {
     public sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IExceptionHandler
     {

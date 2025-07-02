@@ -1,5 +1,5 @@
-﻿using Coderaw.Settings.Extensions.Telemetry;
-using Coderaw.Settings.Models;
+﻿using Mattioli.Configurations.Extensions.Telemetry;
+using Mattioli.Configurations.Models;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,7 +9,7 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace Coderaw.Settings.Extensions.Telemetry
+namespace Mattioli.Configurations.Extensions.Telemetry
 {
     public static class OpenTelemetryExtension
     {

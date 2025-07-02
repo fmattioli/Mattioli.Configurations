@@ -1,6 +1,6 @@
 ﻿using Hangfire.Dashboard;
 
-namespace Coderaw.Settings.Filters
+namespace Mattioli.Configurations.Filters
 {
     public class AllowAllAuthorizationFilter() : IDashboardAuthorizationFilter
     {

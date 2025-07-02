@@ -1,8 +1,9 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
+
 using Microsoft.AspNetCore.JsonPatch;
 
-namespace Coderaw.Settings.Extensions.FluentValidations
+namespace Mattioli.Configurations.Extensions.FluentValidations
 {
     public class JsonPatchValidator : AbstractValidator<JsonPatchError>
     {

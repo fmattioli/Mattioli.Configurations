@@ -1,9 +1,11 @@
 ﻿using Flurl;
+
 using Newtonsoft.Json;
+
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace Coderaw.Settings.Http
+namespace Mattioli.Configurations.Http
 {
     public class BaseHttpClient(HttpClient httpClient)
     {
@@ -78,21 +80,6 @@ namespace Coderaw.Settings.Http
 
             var result = JsonConvert.DeserializeObject<TResponse>(await response.Content.ReadAsStringAsync(cancellationToken));
             return result!;
-        }
-
-        protected async Task PostAsync<TRequest>(
-            string path,
-            TRequest request,
-            CancellationToken cancellationToken)
-            where TRequest : class
-        {
-            var url = _httpClient!.BaseAddress!.ToString().AppendPathSegment(path);
-
-            string json = JsonConvert.SerializeObject(request);
-
-            StringContent bodyContent = new(json, Encoding.UTF8, "application/json");
-
-            await _httpClient.PostAsync(url, bodyContent, cancellationToken);
         }
 
         private static IEnumerable<string> BuildFilters<T>(T queryFilters) where T : class

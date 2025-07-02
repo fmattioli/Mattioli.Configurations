@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
+
 using System.Diagnostics.Metrics;
 
-namespace Coderaw.Settings.Attributes
+namespace Mattioli.Configurations.Attributes
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class CounterMetricsAttribute : Attribute, IActionFilter
