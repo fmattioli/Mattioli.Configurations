@@ -36,6 +36,14 @@ namespace Mattioli.Configurations.Repositories
             return result.DeletedCount;
         }
 
+        public async Task UpdateOneAsync(FilterDefinition<TEntity> filterDefinition,
+            UpdateDefinition<TEntity> entity,
+            UpdateOptions<TEntity> replaceOptions,
+            CancellationToken cancellationToken)
+        {
+            await _collection.UpdateOneAsync(filterDefinition, entity, options: replaceOptions, cancellationToken: cancellationToken);
+        }
+
         public async Task DeleteIfExistsAndInsertAsync(Expression<Func<TEntity, bool>> filterExpression, TEntity entity, CancellationToken cancellationToken)
         {
             await DeleteAsync(filterExpression, cancellationToken);

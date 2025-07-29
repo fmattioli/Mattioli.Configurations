@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using MongoDB.Driver;
+using System.Linq.Expressions;
 
 namespace Mattioli.Configurations.Repositories
 {
@@ -19,5 +20,10 @@ namespace Mattioli.Configurations.Repositories
         Task<TEntity> GetLatestBasedOnFieldAsync(string field, CancellationToken cancellationToken);
 
         Task<TEntity> GetFirstBasedOnFieldAsync(string field, CancellationToken cancellationToken);
+
+        Task UpdateOneAsync(FilterDefinition<TEntity> filterDefinition,
+            UpdateDefinition<TEntity> entity,
+            UpdateOptions<TEntity> replaceOptions,
+            CancellationToken cancellationToken);
     }
 }
