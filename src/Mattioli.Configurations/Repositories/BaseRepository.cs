@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
-
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
-
 using System.Linq.Expressions;
 
 namespace Mattioli.Configurations.Repositories
@@ -96,6 +94,12 @@ namespace Mattioli.Configurations.Repositories
             return firstDocument;
         }
 
+        public async Task<IEnumerable<TEntity>> GetAll(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        {
+            var results = await _collection.Find(predicate).ToListAsync(cancellationToken);
+            return results;
+        }
+
         private static void MapClasses()
         {
             if (!BsonClassMap.IsClassMapRegistered(typeof(TEntity)))
@@ -107,5 +111,6 @@ namespace Mattioli.Configurations.Repositories
                 });
             }
         }
+
     }
 }
