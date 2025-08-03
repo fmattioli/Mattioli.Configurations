@@ -94,7 +94,7 @@ namespace Mattioli.Configurations.Repositories
             return firstDocument;
         }
 
-        public async Task<IEnumerable<TEntity>> GetAll(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
+        public async Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken)
         {
             var results = await _collection.Find(predicate).ToListAsync(cancellationToken);
             return results;

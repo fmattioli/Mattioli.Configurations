@@ -21,7 +21,7 @@ namespace Mattioli.Configurations.Repositories
 
         Task<TEntity> GetFirstBasedOnFieldAsync(string field, CancellationToken cancellationToken);
 
-        Task<IEnumerable<TEntity>> GetAll(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
+        Task<IEnumerable<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> predicate, CancellationToken cancellationToken);
 
         Task UpdateOneAsync(FilterDefinition<TEntity> filterDefinition,
             UpdateDefinition<TEntity> entity,
