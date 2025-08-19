@@ -20,6 +20,7 @@ namespace Mattioli.Configurations.Repositories
         public async Task AddAsync(TEntity entity, CancellationToken cancellationToken)
         {
             await _collection.InsertOneAsync(entity, cancellationToken: cancellationToken);
+            _logger.LogInformation("Document added successfully on collection {CollectionName}", typeof(TEntity).Name);
         }
 
         public async Task<long> DeleteAsync(Expression<Func<TEntity, bool>> filterExpression, CancellationToken cancellationToken)
@@ -28,7 +29,7 @@ namespace Mattioli.Configurations.Repositories
 
             if (result.DeletedCount >= 1)
             {
-                _logger.LogInformation("Document deleted with sucessfully on {@Entity}", filterExpression.Body.ToString());
+                _logger.LogInformation("Document deleted successfully from collection {CollectionName}. Filter: {Filter}", typeof(TEntity).Name, filterExpression.Body.ToString());
             }
 
             return result.DeletedCount;
@@ -54,7 +55,7 @@ namespace Mattioli.Configurations.Repositories
 
             if (result.ModifiedCount >= 1)
             {
-                _logger.LogInformation("Document updated with successfully {@Entity}", entity);
+                _logger.LogInformation("Document updated successfully from collection {CollectionName}. Filter: {Filter}", typeof(TEntity).Name, filterExpression.Body.ToString());
             }
 
             return result.ModifiedCount;
