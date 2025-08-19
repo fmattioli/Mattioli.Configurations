@@ -9,7 +9,7 @@ namespace Mattioli.Configurations.Attributes
     {
         private readonly Counter<long> _requestCounter;
 
-        public CounterMetricsAttribute(string metricName, string applicationName)
+        public CounterMetricsAttribute(string metricName,  string applicationName)
         {
             var meter = new Meter(applicationName);
 
