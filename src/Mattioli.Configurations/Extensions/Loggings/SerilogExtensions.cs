@@ -33,14 +33,14 @@ namespace Mattioli.Configurations.Extensions.Loggings
                         .MinimumLevel.Override("System", LogEventLevel.Warning)
                         .MinimumLevel.Override("Hangfire.Server.ServerHeartbeatProcess", LogEventLevel.Warning)
                         .WriteTo.Console(outputTemplate:
-                            "{Timestamp:yyyy-MM-dd HH:mm:ss} | {Level} | {Message} | {Exception}{NewLine}")
+                            "{Timestamp:yyyy-MM-dd HH:mm:ss} | {Level} | Trace: {TraceId} | RequestPath: {RequestPath} | Env: {Environment} | {SourceContext} | {Message} | {Exception}{NewLine}");
                         .WriteTo.OpenTelemetry(options =>
                         {
                             options.Endpoint = collectorUrl;
                             options.Protocol = OtlpProtocol.Grpc;
                             options.ResourceAttributes = new Dictionary<string, object>
                             {
-                                { "serviceName", serviceName }
+                                { "service.name", serviceName }
                             };
                         });
                 }
