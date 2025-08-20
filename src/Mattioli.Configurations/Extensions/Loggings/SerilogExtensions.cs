@@ -20,20 +20,15 @@ namespace Mattioli.Configurations.Extensions.Loggings
                 {
                     loggerConfiguration
                         .MinimumLevel.Debug()
-                        .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                        .MinimumLevel.Override("System", LogEventLevel.Information)
                         .WriteTo.Console(outputTemplate:
                             "{Timestamp:yyyy-MM-dd HH:mm:ss} | {Level} | Trace: {TraceId} | RequestPath: {RequestPath} | Env: {Environment} | {SourceContext} | {Message} | {Exception}{NewLine}");
                 }
                 else
                 {
                     loggerConfiguration
-                        .MinimumLevel.Information()
-                        .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-                        .MinimumLevel.Override("System", LogEventLevel.Warning)
-                        .MinimumLevel.Override("Hangfire.Server.ServerHeartbeatProcess", LogEventLevel.Warning)
+                        .MinimumLevel.Information()                        
                         .WriteTo.Console(outputTemplate:
-                            "{Timestamp:yyyy-MM-dd HH:mm:ss} | {Level} | Trace: {TraceId} | RequestPath: {RequestPath} | Env: {Environment} | {SourceContext} | {Message} | {Exception}{NewLine}");
+                            "{Timestamp:yyyy-MM-dd HH:mm:ss} | {Level} | Trace: {TraceId} | RequestPath: {RequestPath} | Env: {Environment} | {SourceContext} | {Message} | {Exception}{NewLine}")
                         .WriteTo.OpenTelemetry(options =>
                         {
                             options.Endpoint = collectorUrl;
