@@ -13,7 +13,30 @@ namespace Mattioli.Configurations.Extensions.Loggings
         public static IApplicationBuilder UseRequestContextLogging(this IApplicationBuilder app)
         {
             app.UseMiddleware<RequestContextLoggingMiddleware>();
-            app.UseSerilogRequestLogging();
+            app.UseSerilogRequestLogging(options =>
+            {
+                options.GetLevel = (httpContext, elapsed, ex) =>
+                {
+                    var statusCode = httpContext.Response.StatusCode;
+
+                    if (statusCode >= 500)
+                    {
+                        return Serilog.Events.LogEventLevel.Error;
+                    }
+                    else if (statusCode >= 400)
+                    {
+                        return Serilog.Events.LogEventLevel.Warning;
+                    }
+                    else
+                    {
+                        return Serilog.Events.LogEventLevel.Information;
+                    }
+                };
+
+                options.MessageTemplate =
+                    "HTTP {RequestMethod} {RequestPath} -> {StatusCode} in {Elapsed:0}ms";
+            });
+
 
             return app;
         }
