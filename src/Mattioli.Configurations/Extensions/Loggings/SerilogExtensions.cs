@@ -63,6 +63,9 @@ namespace Mattioli.Configurations.Extensions.Loggings
                 {
                     loggerConfiguration
                         .MinimumLevel.Information()
+                        .MinimumLevel.Override("Microsoft", Serilog.Events.LogEventLevel.Warning)
+                        .MinimumLevel.Override("Microsoft.AspNetCore", Serilog.Events.LogEventLevel.Warning)
+                        .MinimumLevel.Override("System.Net.Http.HttpClient", Serilog.Events.LogEventLevel.Warning)
                         .WriteTo.Console(outputTemplate:
                             "{Timestamp:yyyy-MM-dd HH:mm:ss} | {Level} | CorrelationId: {CorrelationId} Trace: {TraceId} | RequestPath: {RequestPath} | Env: {Environment} | {SourceContext} | {Message} | {Exception}{NewLine}")
                         .WriteTo.OpenTelemetry(options =>
