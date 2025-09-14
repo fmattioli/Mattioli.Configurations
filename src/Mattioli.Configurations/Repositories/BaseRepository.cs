@@ -29,7 +29,7 @@ namespace Mattioli.Configurations.Repositories
 
             if (result.DeletedCount >= 1)
             {
-                _logger.LogInformation("Document deleted successfully from collection {CollectionName}. Filter: {Filter}", typeof(TEntity).Name, filterExpression.Body.ToString());
+                _logger.LogInformation("Document deleted successfully from collection {CollectionName}", typeof(TEntity).Name);
             }
 
             return result.DeletedCount;
@@ -55,7 +55,7 @@ namespace Mattioli.Configurations.Repositories
 
             if (result.ModifiedCount >= 1)
             {
-                _logger.LogInformation("Document updated successfully from collection {CollectionName}. Filter: {Filter}", typeof(TEntity).Name, filterExpression.Body.ToString());
+                _logger.LogInformation("Document updated successfully from collection {CollectionName}.", typeof(TEntity).Name);
             }
 
             return result.ModifiedCount;
@@ -112,6 +112,5 @@ namespace Mattioli.Configurations.Repositories
                 });
             }
         }
-
     }
 }
