@@ -32,6 +32,8 @@ namespace Mattioli.Configurations.Extensions.Hangfire
                 });
             });
 
+            GlobalJobFilters.Filters.Add(new AutomaticRetryAttribute { Attempts = 0 });
+            
             services.AddHangfireServer(options =>
             {
                 options.WorkerCount = 2;
