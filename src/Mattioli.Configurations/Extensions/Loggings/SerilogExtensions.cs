@@ -77,7 +77,7 @@ namespace Mattioli.Configurations.Extensions.Loggings
                                 { "service.name", serviceName }
                             };
                         })
-                        .WriteTo.Seq(seqUrl);                        
+                        .WriteTo.Seq(seqUrl);
                 }
             });
         }
