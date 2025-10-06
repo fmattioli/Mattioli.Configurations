@@ -1,13 +1,12 @@
 ﻿using Mattioli.Configurations.Extensions.Telemetry;
 using Mattioli.Configurations.Models;
-
 using Microsoft.Extensions.DependencyInjection;
-
 using OpenTelemetry;
 using OpenTelemetry.Exporter;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Sentry.OpenTelemetry;
 
 namespace Mattioli.Configurations.Extensions.Telemetry
 {
@@ -24,8 +23,10 @@ namespace Mattioli.Configurations.Extensions.Telemetry
                 .WithTracing(builder =>
                 {
                     builder
-                    .AddSource(mltSettings.ApplicationName)
-                    .AddAspNetCoreInstrumentation();
+                        .AddSource(mltSettings.ApplicationName)
+                        .AddAspNetCoreInstrumentation()
+                        .AddHttpClientInstrumentation()
+                        .AddSentry();
                 })
                 .WithMetrics(builder =>
                 {
