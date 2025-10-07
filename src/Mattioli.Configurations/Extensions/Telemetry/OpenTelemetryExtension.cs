@@ -1,5 +1,4 @@
-﻿using Mattioli.Configurations.Extensions.Telemetry;
-using Mattioli.Configurations.Models;
+﻿using Mattioli.Configurations.Models;
 using Microsoft.Extensions.DependencyInjection;
 using OpenTelemetry;
 using OpenTelemetry.Exporter;
@@ -14,19 +13,22 @@ namespace Mattioli.Configurations.Extensions.Telemetry
     {
         public static IServiceCollection AddOpenTelemetry(this IServiceCollection services, MltSettings mltSettings)
         {
-            var serviceName = mltSettings.ApplicationName;
             var otelExporterEndpoint = mltSettings.OpenTelemetryColectorUrl;
 
             services.AddOpenTelemetry()
-                .ConfigureResource(resource => resource.AddService(serviceName))
+                .ConfigureResource(resource => resource.AddService(mltSettings.ApplicationName))
                 .UseOtlpExporter(OtlpExportProtocol.Grpc, new Uri(otelExporterEndpoint!))
                 .WithTracing(builder =>
                 {
                     builder
                         .AddSource(mltSettings.ApplicationName)
                         .AddAspNetCoreInstrumentation()
-                        .AddHttpClientInstrumentation()
-                        .AddSentry();
+                        .AddHttpClientInstrumentation();
+
+                    if (!string.IsNullOrWhiteSpace(mltSettings.Dsn))
+                    {
+                        builder.AddSentry();
+                    }
                 })
                 .WithMetrics(builder =>
                 {
