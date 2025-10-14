@@ -8,6 +8,6 @@
         public required double TracesSampleRate { get; set; }
         public required bool AttachStacktrace { get; set; }
         public required string DiagnosticLevel { get; set; }
-        public required string Url { get; set; }
+        public required string SeqUrl { get; set; }
     }
 }
