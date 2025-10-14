@@ -8,7 +8,7 @@ namespace Mattioli.Configurations.Extensions.Sentry
     {
         public static WebApplicationBuilder UseMltSeq(this WebApplicationBuilder builder, MltSettings mltSettings)
         {
-            if (string.IsNullOrWhiteSpace(mltSettings.Dsn))
+            if (string.IsNullOrWhiteSpace(mltSettings.Url))
             {
                 return builder;
             }
