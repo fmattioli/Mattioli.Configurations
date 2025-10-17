@@ -4,12 +4,6 @@
     {
         protected Result(bool isSuccess, Error error)
         {
-            if (isSuccess && error != Error.None ||
-                !isSuccess && error == Error.None)
-            {
-                throw new ArgumentException("Invalid error", nameof(error));
-            }
-
             IsSuccess = isSuccess;
             Error = error;
         }
@@ -35,22 +29,13 @@
             _value = value;
         }
 
-        public T Data
-        {
-            get
-            {
-                if (!IsSuccess)
-                {
-                    throw new InvalidOperationException("No value available for failure result.");
-                }
-
-                return _value;
-            }
-        }
+        public T Data => _value;
 
         public static Result<T> Success(T value) => new(value, true, Error.None);
 
         public static new Result<T> Failure(Error error) => new(default!, false, error);
+
+        public static Result<T> Failure(Error error, T value) => new(value, false, error);
     }
 
     public sealed record Error(string Code, string Description)
