@@ -1,16 +1,10 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
-
 using System.Text.Json;
 
 namespace Mattioli.Configurations.Repositories;
 
 public class CacheRepository(IDistributedCache _cache) : ICacheRepository
 {
-    private readonly DistributedCacheEntryOptions cacheOptions = new()
-    {
-        AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(7)
-    };
-
     public async Task<T?> GetCacheValueAsync<T>(string key, CancellationToken cancellationToken)
     {
         var cachedData = await _cache.GetStringAsync(key, cancellationToken);
@@ -26,10 +20,15 @@ public class CacheRepository(IDistributedCache _cache) : ICacheRepository
         }
     }
 
-    public async Task SetCacheValueAsync<T>(string key, T value, CancellationToken cancellationToken)
+    public async Task SetCacheValueAsync<T>(string key, T value, TimeSpan expiration, CancellationToken cancellationToken)
     {
+        var cacheOptions = new DistributedCacheEntryOptions
+        {
+            AbsoluteExpirationRelativeToNow = expiration
+        };
+
         var serializedValue = JsonSerializer.Serialize(value);
+
         await _cache.SetStringAsync(key, serializedValue, cacheOptions, cancellationToken);
-        await Task.CompletedTask;
     }
 }
