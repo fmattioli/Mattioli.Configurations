@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-
 using System.Net;
 
 namespace Mattioli.Configurations.Extensions.Handlers
@@ -16,40 +15,38 @@ namespace Mattioli.Configurations.Extensions.Handlers
             Exception exception,
             CancellationToken cancellationToken)
         {
-            _logger.LogError("The following error occured: {ErrorMessage}", exception.StackTrace);
-            _logger.LogError("The following error occured: {ErrorMessage}", exception.Message);
-            _logger.LogError(exception, "An error occurred: {Message}", exception.InnerException?.Message ?? "No inner exception");
+            var traceId = httpContext.TraceIdentifier;
 
             var code = exception switch
             {
                 BadHttpRequestException => HttpStatusCode.BadRequest,
                 UnauthorizedAccessException => HttpStatusCode.Unauthorized,
-                HttpRequestException => HttpStatusCode.InternalServerError,
-                _ => HttpStatusCode.InternalServerError,
+                HttpRequestException => HttpStatusCode.ServiceUnavailable,
+                _ => HttpStatusCode.InternalServerError
             };
 
-            var errors = new List<string>
-            {
-                exception.Message + " - " + exception.StackTrace
-            };
-
-            foreach (var key in exception.Data.Keys)
-            {
-                _logger.LogError("The following error occured: {ErrorMessage}", exception.Data[key]);
-                _logger.LogError(exception, "More details can be find following the exception");
-                errors.Add(exception.Data[key]?.ToString() ?? "");
-            }
+            _logger.LogError(exception,
+                "Unhandled exception ({TraceId}) at {Path}. Message: {Message}",
+                traceId,
+                httpContext.Request.Path,
+                exception.Message);
 
             var problemDetails = new ProblemDetails
             {
                 Status = (int)code,
-                Title = string.Join(",", errors)
+                Title = "An unexpected error occurred.",
+                Detail = "Internal server error. Contact support with the provided traceId.",
+                Instance = httpContext.Request.Path,
+                Extensions =
+                {
+                    ["traceId"] = traceId
+                }
             };
 
-            httpContext.Response.StatusCode = problemDetails.Status.Value;
+            httpContext.Response.StatusCode = (int)code;
+            httpContext.Response.ContentType = "application/json";
 
-            await httpContext.Response
-                .WriteAsJsonAsync(problemDetails, cancellationToken);
+            await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
 
             return true;
         }
