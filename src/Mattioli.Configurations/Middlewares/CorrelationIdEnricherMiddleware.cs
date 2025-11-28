@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Primitives;
 namespace Mattioli.Configurations.Middlewares;
 
-public class EnsureCorrelationIdMiddleware(RequestDelegate next)
+public class CorrelationIdEnricherMiddleware(RequestDelegate next)
 {
     private const string CorrelationIdHeaderName = "X-Correlation-Id";
     private readonly RequestDelegate _next = next;
