@@ -9,7 +9,7 @@
     <Title>Mattioli.Configurations</Title>
     <Description>Helpful settings related to the logging, telemetry, http client and more. </Description>
     <PackageIcon>icon.png</PackageIcon>
-    <Version>1.65.0</Version>
+    <Version>1.66.0</Version>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <NoWarn>CS8618</NoWarn>
