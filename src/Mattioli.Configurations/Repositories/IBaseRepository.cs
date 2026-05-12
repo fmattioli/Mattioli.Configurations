@@ -7,6 +7,8 @@ namespace Mattioli.Configurations.Repositories
     {
         Task AddAsync(TEntity entity, CancellationToken cancellationToken);
 
+        Task AddManyAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken);
+
         Task<long> ReplaceAsync(Expression<Func<TEntity, bool>> filterExpression,
             TEntity entity, CancellationToken cancellationToken);
 
