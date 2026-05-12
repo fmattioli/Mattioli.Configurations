@@ -23,6 +23,12 @@ namespace Mattioli.Configurations.Repositories
             _logger.LogInformation("Document added successfully on collection {CollectionName}", typeof(TEntity).Name);
         }
 
+        public async Task AddManyAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken)
+        {
+            await _collection.InsertManyAsync(entities, cancellationToken: cancellationToken);
+            _logger.LogInformation("{Count} documents added successfully on collection {CollectionName}", entities.Count(), typeof(TEntity).Name);
+        }
+
         public async Task<long> DeleteAsync(Expression<Func<TEntity, bool>> filterExpression, CancellationToken cancellationToken)
         {
             var result = await _collection.DeleteOneAsync(filterExpression, cancellationToken);
