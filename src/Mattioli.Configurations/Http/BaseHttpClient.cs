@@ -66,7 +66,6 @@ namespace Mattioli.Configurations.Http
             string path,
             TRequest request,
             CancellationToken cancellationToken)
-            where TResponse : class
             where TRequest : class
         {
             var url = _httpClient!.BaseAddress!.ToString().AppendPathSegment(path);
